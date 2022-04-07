@@ -18,6 +18,7 @@ func About(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "about.page.tmpl")
 }
 
+// Render template
 func renderTemplate(w http.ResponseWriter, tmpl string) {
 	parsedTemplate, _ := template.ParseFiles("./templates/" + tmpl)
 	err := parsedTemplate.Execute(w, nil)
@@ -26,8 +27,8 @@ func renderTemplate(w http.ResponseWriter, tmpl string) {
 	}
 }
 
+// Funky main
 func main() {
-
 	http.HandleFunc("/", Home)
 	http.HandleFunc("/about", About)
 
