@@ -11,7 +11,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 // About is the about page handler
 func About(w http.ResponseWriter, r *http.Request) {
-	renderTemplate(w, "aboot.page.html")
+	renderTemplate(w, "about.page.html")
 }
 
 func SuckIt(w http.ResponseWriter, r *http.Request) {
