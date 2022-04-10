@@ -1,3 +1,3 @@
-module github.com/nwohater/webapp
+module github.com/nwohater/Go-WebApp
 
 go 1.18

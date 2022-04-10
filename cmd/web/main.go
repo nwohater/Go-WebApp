@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/nwohater/webapp/pkg/handlers"
+	"github.com/nwohater/Go-WebApp/pkg/handlers"
 	"net/http"
 )
 

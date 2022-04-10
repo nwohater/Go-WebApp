@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/nwohater/webapp/pkg/render"
+	"github.com/nwohater/Go-WebApp/pkg/render"
 	"net/http"
 )
 
@@ -12,9 +12,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 // About is the about page handler
 func About(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "aboot.page.html")
+	render.RenderTemplate(w, "about.page.tmpl")
 }
 
 func SuckIt(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "suckit.page.html")
+	render.RenderTemplate(w, "suckit.page.tmpl")
 }
