@@ -3,6 +3,7 @@ package render
 import (
 	"bytes"
 	"fmt"
+	"github.com/nwohater/Go-WebApp/pkg/config"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,24 +12,29 @@ import (
 
 var functions = template.FuncMap{}
 
+var app *config.AppConfig
+
+// sets the config for template package
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
 // Render template
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
 
-	tc, err := CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
-	}
+	// get template cache from the app config
+	tc := app.TemplateCache
 
 	t, ok := tc[tmpl]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("could not get template from cache")
 	}
 
 	buf := new(bytes.Buffer)
 
 	_ = t.Execute(buf, nil)
 
-	_, err = buf.WriteTo(w)
+	_, err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println("Error writing template to browser", err)
 	}
