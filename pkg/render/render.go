@@ -14,16 +14,21 @@ var functions = template.FuncMap{}
 
 var app *config.AppConfig
 
-// sets the config for template package
+// NewTemplates sets the config for template package
 func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-// Render template
+// RenderTemplate Render template
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
 
-	// get template cache from the app config
-	tc := app.TemplateCache
+	var tc map[string]*template.Template
+	if app.UseCache {
+		// get template cache from the app config
+		tc = app.TemplateCache
+	} else {
+		tc, _ = CreateTemplateCache()
+	}
 
 	t, ok := tc[tmpl]
 	if !ok {
@@ -41,7 +46,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 
 }
 
-// Create a template cache as map
+// CreateTemplateCache Create a template cache as map
 func CreateTemplateCache() (map[string]*template.Template, error) {
 
 	myCache := map[string]*template.Template{}
